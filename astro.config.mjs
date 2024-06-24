@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 
@@ -8,12 +8,7 @@ import icon from "astro-icon";
 export default defineConfig({
   integrations: [tailwind(), icon()],
   image: {
-    service: {
-      entrypoint: 'astro/assets/services/sharp',
-      config: {
-        limitInputPixels: false,
-      },
-    }
+    service: sharpImageService(),
   },
   image: {
     // Ejemplo: Permite la optimización de imágenes remotas desde un solo dominio
