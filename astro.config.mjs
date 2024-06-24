@@ -9,6 +9,10 @@ import vercelStatic from '@astrojs/vercel/static';
 export default defineConfig({
   integrations: [tailwind(), icon()],
   output: "static",
-  adapter: vercelStatic(),
+  adapter: vercelStatic(
+    {
+      imageService: passthroughImageService(),
+    }
+  ),
 
 });
