@@ -1,0 +1,138 @@
+---
+import { Icon } from "astro-icon/components";
+
+const navItems: Array<NavItem> = [
+  { title: "Nosotros", url: "#nosotros" },
+  { title: "Propuesta", url: "#propuesta" },
+  { title: "Galeria", url: "#galeria" },
+  { title: "Preguntas frecuentes", url: "#preguntas" },
+];
+---
+
+<header class="sticky top-0 z-50 bg-default text-white" id="page-header">
+  <nav
+    class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4"
+  >
+    <ul
+      class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4"
+    >
+      <li>
+        <a class="flex items-center gap-3 hover:!text-default" href="/">
+          <h1 class="sr-only">Invertefast</h1>
+          <Icon name="logomark" class="h-10 w-36" />
+        </a>
+      </li>
+      <li>
+        <button
+          id="open-nav-button"
+          type="button"
+          class="btn sm:hidden"
+          aria-label="Navigation"
+        >
+          <Icon name="mdi:menu" class="size-8" />
+        </button>
+      </li>
+      <li class="hidden md:flex">
+        <ul class="flex space-x-5">
+          {
+            navItems.map(({ title, url }) => (
+              <li>
+                <a
+                  class="hover:border-b hover:border-primary hover:text-primary"
+                  href={url}
+                >
+                  {title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </li>
+    </ul>
+
+    <div id="menu-modal" class="modal hidden" aria-hidden="true">
+      <div class="fixed inset-0 bg-default px-8 py-4 text-default">
+        <div class="space-y-4" role="dialog" aria-modal="true">
+          <header class="text-right">
+            <button
+              id="close-nav-button"
+              type="button"
+              class="btn"
+              aria-label="Close navigation"
+            >
+              <Icon name="mdi:close" class="size-8 text-white" />
+            </button>
+          </header>
+          <div class="justify-center">
+            <Icon name="logomark" class="h-10 w-36" />
+          </div>
+          <nav>
+            <ul class="flex flex-col">
+              {
+                navItems.map(({ title, url }) => (
+                  <li>
+                    <a class="text-white" href={url}>
+                      {title}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<script>
+  import MicroModal from "micromodal";
+  import invariant from "tiny-invariant";
+
+  const menuModalId = "menu-modal";
+
+  const header = document.querySelector("#page-header") as HTMLElement;
+  const page = document.documentElement;
+  const menu = document.querySelector(`#${menuModalId} ul`);
+  const openNavButton = document.querySelector("#open-nav-button");
+  const closeNavButton = document.querySelector("#close-nav-button");
+
+  invariant(header, "header should not be null");
+  invariant(menu, "menu should not be null");
+  invariant(openNavButton, "openNavButton should not be null");
+  invariant(closeNavButton, "closeNavButton should not be null");
+
+  const openMenu = () => {
+    MicroModal.show(menuModalId, { disableScroll: true });
+  };
+
+  const closeMenu = () => {
+    MicroModal.close(menuModalId);
+  };
+
+  openNavButton.addEventListener("click", openMenu);
+  closeNavButton.addEventListener("click", closeMenu);
+
+  menu.addEventListener("click", (event) => {
+    if ((event.target as HTMLElement).tagName === "A") {
+      closeMenu();
+    }
+  });
+</script>
+
+<noscript>
+  <style>
+    #open-nav-button {
+      display: none;
+    }
+  </style>
+</noscript>
+
+<style>
+  .fixed-header {
+    @apply fixed bottom-auto top-0;
+    @apply border-default bg-default text-default;
+  }
+  .modal.is-open {
+    @apply block;
+  }
+</style>

@@ -1,0 +1,11 @@
+:root {
+  --color-primary: rgb(238, 190, 61);
+  --color-secondary: rgb(0, 11, 22);
+  --color-tertiary: hsl(214, 74%, 10%);
+  --color-text: rgb(0, 11, 22);
+  --color-text-offset: rgb(238, 190, 61);
+
+  --color-background: rgb(0, 11, 22);
+  --color-background-offset: rgb(238, 190, 61);
+  --color-border: rgb(113, 56, 22);
+}

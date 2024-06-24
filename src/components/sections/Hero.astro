@@ -1,0 +1,83 @@
+---
+import { Image } from "astro:assets";
+import heroImage from "@/assets/hero-image.webp";
+---
+
+<section class="bg-img-wape section_height flex items-start justify-start">
+  <div
+    class="space-global mx-auto flex max-w-7xl flex-col items-center justify-center space-y-5 overflow-hidden text-center lg:flex-row lg:items-center lg:justify-between"
+  >
+    <div class="flex flex-col space-y-5 lg:max-w-lg lg:text-left">
+      <h1
+        data-aos="fade-up"
+        data-aos-delay="300"
+        class="font-extrabold leading-10 text-white text-4xl sm:leading-none sm:text-5xl"
+      >
+        Tu camino hacia un futuro
+        <br />
+        <span class="text-primary">Financiero seguro.</span>
+      </h1>
+      <p class="text-white text-lg" data-aos="fade-right" data-aos-delay="400">
+        Ofrecemos soluciones personalizadas y estratégicas financieras
+        innovadoras diseñadas para maximizar el rendimiento de tu inversión.
+      </p>
+      <div class="mt-6 flex justify-center space-x-4 sm:mt-8 lg:justify-start">
+        <a
+          href="#proximamente"
+          class="hover:bg-primary-dark flex items-center justify-center rounded-md bg-primary px-6 py-3 font-bold uppercase text-secondary text-base"
+          data-aos="zoom-in-down"
+          data-aos-delay="300"
+        >
+          Invierte ahora
+        </a>
+      </div>
+    </div>
+    <figure
+      class="mt-10 lg:ml-10 lg:mt-0"
+      data-aos="zoom-out"
+      data-aos-delay="600"
+    >
+      <Image
+        src={heroImage}
+        alt="Invertifast - Inversiones inteligentes"
+        class="w-full max-w-xl rounded-lg shadow-lg"
+      />
+    </figure>
+  </div>
+</section>
+
+<style>
+  .bg-img-wape {
+    background-image: url("../../icons/bg-hero.svg");
+    background-color: rgba(0, 0, 0, 0.3);
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+  }
+  a {
+    @apply bg-primary uppercase;
+    color: black;
+    border-radius: 20px;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 1em 2em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid black;
+    box-shadow: 0 0 0 0 black;
+  }
+
+  a:hover {
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 2px 5px 0 0 rgb(252, 191, 45);
+  }
+
+  a:active {
+    transform: translateY(2px) translateX(1px);
+    box-shadow: 0 0 0 0 rgb(252, 191, 45);
+  }
+
+  a:focus {
+    outline: none;
+  }
+</style>

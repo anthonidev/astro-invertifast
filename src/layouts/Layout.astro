@@ -1,0 +1,49 @@
+---
+import "@/styles/index.css";
+import "aos/dist/aos.css";
+import Header from "@/components/shared/Header.astro";
+import Footer from "@/components/shared/Footer.astro";
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Descripción de tu sitio web" />
+    <meta
+      name="keywords"
+      content="palabras, clave, relacionadas, con, tu, sitio"
+    />
+    <meta name="author" content="Tu Nombre" />
+    <title>Invertifast - Invierte en tu futuro</title>
+    <script>
+      import "@/helpers/scripts/lenisSmoothScroll.ts";
+    </script>
+  </head>
+  <body
+    class="bg-default text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <script>
+      import AOS from "aos";
+      AOS.init();
+    </script>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <style>
+      /* Reglas CSS para la barra de desplazamiento de la página */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </body>
+</html>
