@@ -8,6 +8,15 @@ import icon from "astro-icon";
 export default defineConfig({
   integrations: [tailwind(), icon()],
   image: {
-    service: squooshImageService(),
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        limitInputPixels: false,
+      },
+    }
+  },
+  image: {
+    // Ejemplo: Permite la optimización de imágenes remotas desde un solo dominio
+    domains: ['astro.build'],
   },
 });
